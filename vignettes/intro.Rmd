@@ -8,6 +8,11 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(comment = "#", warning = FALSE, eval = TRUE, message = FALSE)
+set.seed(1)
+library(Ball)
+```
 
 ## Overview
 ### 1.

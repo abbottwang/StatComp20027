@@ -8,6 +8,11 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(comment = "#", warning = FALSE, eval = TRUE, message = FALSE)
+set.seed(1)
+library(Ball)
+```
 
 # HOMWEWORK 1
 ## Question
@@ -668,7 +673,7 @@ power
 Implement the Mardia test function, and replace `sk()` with `mardia.test()`. Since their distributions are
 different, we should compare the p-value with test level $\alpha$ when we use `mardia.test()`.
 
-```{r， eval=FALSE}
+```{r}
 rm(list=ls())
 library(MASS)
 # set.seed(124)
@@ -702,7 +707,7 @@ for (i in 1:length(n)) {
 p.reject
 ```
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 library(MASS)
 mardia.test <- function(x,alpha=0.05) {
@@ -798,7 +803,7 @@ best fitting model. Use leave-two-out cross validation to compare the models.
 ### 7.1
 Compute a jackknife estimate of the bias and the standard error of the correlation statistic.
 
-```{r, eval=FALSE}
+```{r}
 library(bootstrap)
 n <- nrow(law)
 theta.jack <- numeric(n)
@@ -821,7 +826,7 @@ se.jack <- sqrt((n-1)^2*var(theta.jack)/n); round(se.jack,4)
 Since $E[X]=\frac 1{\lambda}$, we can estimate $\lambda$ using $\hat\lambda=1/{\bar X}$.
 Then compute the $95\%$ bootstrap confidence interval.
 
-```{r, eval=FALSE}
+```{r}
 library(boot)
 set.seed(123)
 data <- aircondit
@@ -841,7 +846,7 @@ These methods are different because the distribution of statistics they use are 
 ### 7.8
 Obtain the jackknife estimates of bias and standard error of $\hat\theta$.
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 library(bootstrap)
 data <- scor
@@ -872,7 +877,7 @@ se.jack <- sqrt((n-1)^2*var(theta.jack)/n); round(se.jack,4)
 Divide the data set into $N$ groups which makes every group contain two data points.
 Leave one group out and use the other $N-1$ groups to train.
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 library(DAAG); attach(ironslag)
 a <- seq(10, 40, .1) #sequence for plotting fits
@@ -959,7 +964,7 @@ are distinguishable (say, range from 0.3 to 0.8).
 ### 1.
 Use permutation method to promote count5 test.
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 set.seed(1234)
 count5test <- function(x, y) {
@@ -1169,7 +1174,7 @@ $k$ degrees of freedom.
 ## Answer
 ### 1.
 
-```{r, eval=FALSE}
+```{r}
 rm(list = ls())
 set.seed(7)
 dlaplace <- function(x) {
@@ -1234,7 +1239,7 @@ par(mfrow=c(1,1)) #reset to default
 ```
 
 
-```{r, eval=FALSE}
+```{r}
 a <- c(.05, seq(.1, .9, .1), .95)
 Q <- qlaplace(a)
 rw <- cbind(rw1$x, rw2$x, rw3$x, rw4$x)
@@ -1431,7 +1436,7 @@ and stores its outputs in a vector (or a matrix). What arguments should the func
 ## Answer
 ### 1.
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 library(nloptr)
 
@@ -1463,7 +1468,7 @@ r
 
 ### 2.
 
-```{r, eval=FALSE}
+```{r}
 rm(list=ls())
 attach(mtcars)
 
