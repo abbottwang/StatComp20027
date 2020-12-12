@@ -1,0 +1,47 @@
+---
+title: "Introduction to StatComp20027"
+author: "WANG Yu"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to StatComp20027}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+### 1.
+__knnde__ is a function which can be used for computing knn density estimation.
+
+```{r, eval=FALSE}
+library('FNN')
+x <- as.matrix(faithful)
+cat(range(x[,1]), range(x[,2]))
+
+x.breaks <- seq(from = 1, to = 6, by = 0.1)
+y.breaks <- seq(from = 40, to = 100, by = 0.5)
+
+knnde <- function(x, k, x.breaks, y.breaks){
+    p <- ncol(x); n <- nrow(x)
+    est_pt <- expand.grid(x.breaks, y.breaks)
+    distance <- knnx.dist(x, est_pt, k)
+    est_de <- matrix(k / (2 * n * distance[,k]), nrow = length(x.breaks))
+    return(est_de)
+}
+k <- 5
+fit_knnde <- knnde(x, k, x.breaks, y.breaks)
+persp(x.breaks, y.breaks, fit_knnde, phi = 30, theta = 45, col = 'blue', border=0)
+```
+
+
+### 2.
+__Euclidean.norm__ is a function used to compute the $L_2$ norm of a vector.
+source code as follows:
+```{r}
+Euclidean.norm <- function(x) {
+  sqrt(sum(x^2))
+}
+```
+
+
+

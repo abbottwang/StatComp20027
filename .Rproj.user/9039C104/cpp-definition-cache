@@ -1,0 +1,35 @@
+[
+    {
+        "file": "E:/Documents/qq_file/StatComp20027/src/StatCompC.cpp",
+        "file_last_write": 1607758233.0,
+        "definitions": [
+            {
+                "usr": "c:@F@d_laplace#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "d_laplace(Rcpp::NumericVector)",
+                "file": "E:/Documents/qq_file/StatComp20027/src/StatCompC.cpp",
+                "line": 15,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@d_laplace#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "d_laplace(double)",
+                "file": "E:/Documents/qq_file/StatComp20027/src/StatCompC.cpp",
+                "line": 21,
+                "column": 8
+            },
+            {
+                "usr": "c:@F@rw_Metropolis#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rw_Metropolis(double, double, int)",
+                "file": "E:/Documents/qq_file/StatComp20027/src/StatCompC.cpp",
+                "line": 42,
+                "column": 6
+            }
+        ]
+    }
+]
