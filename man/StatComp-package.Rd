@@ -2,10 +2,11 @@
 \alias{StatComp20027-package}
 \docType{package}
 \title{
-  This package provides several functions for benchmarking R and Rcpp.
+  This package provides several functions used for my Statistical Computing and Nonparametric courses.
 }
 \description{
-  R and Rcpp versions of gibbs sampler and vaac function are provided in this package (\code{gibbsR} and \code{vaccR} versus \code{gibbsC} and \code{vaccC})
+  \code{Euclidean.dist} and \code{Euclidean.norm} functions are provided in this package.
+  The package created mainly as a final project of the __Statistical Computing__ course.
 }
 \author{
 WANG Yu
