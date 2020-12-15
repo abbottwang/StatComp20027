@@ -7,17 +7,17 @@
 rw_Metropolis(sigma, x0, N)
 }
 \arguments{
-\item{sigma}{vaiance}
+\item{sigma}{variance}
 
 \item{x0}{initial values}
 
-\item{N}{length}
+\item{N}{maximum number of iteration}
 }
 \value{
 a list of \code{x} and iterator \code{k}
 }
 \description{
-using Metropolis method implementing Mcmc
+using Metropolis method implementing MCMC
 }
 \examples{
 \dontrun{

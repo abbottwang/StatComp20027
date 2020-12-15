@@ -11,28 +11,50 @@ vignette: >
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(comment = "#", warning = FALSE, eval = TRUE, message = FALSE)
 set.seed(1)
-library(Ball)
+library(StatComp20027)
 ```
 
 ## Overview
-### 1.
-__Euclidean.dist__ is a function which can be used for computing the distance between \code{x} and \code{y}.
+This package contains all my homework in the Statistical Computing course and two functions \code{d_mvnorm}, 
+\code{r_mvnorm}
+
+### functions
+\code{r_norm} is a functions which can be used to generate multivariate normal distribution
+random number. 
+
+The source code is:
 
 ```{r, eval=FALSE}
-Euclidean.dist <- function(x, y) }{
-  sqrt(sum((x-y)^2))
+
+# generate multivariate normal distribution
+r_mvnorm <- function(n, mu, Sigma) {
+    m = length(mu)
+    mu.mat <- matrix(rep(mu, n), ncol=m, byrow=TRUE)
+    # svd decomposition
+    decop <- svd(Sigma)
+    D <- decop$d
+    dd <- diag(sqrt(D))
+    
+    # compute Sigma^(-1/2)
+    A <- decop$u %*% dd %*% t(decop$v)
+    u <- matrix(rnorm(m*n), ncol=m)
+    # mr normal distribution random number
+    rn <- u %*% A + mu.mat
+    rn
 }
 ```
 
+\code{d_norm} is the probability density function of multivariate normal distribution.
 
-### 2.
-__Euclidean.norm__ is a function used to compute the $L_2$ norm of a vector.
-source code as follows:
-```{r}
-Euclidean.norm <- function(x) {
-  sqrt(sum(x^2))
+The source code is:
+
+```{r, eval=FALSE}
+
+dmvnorm <- function(x, mu, Sigma) {
+  n <- length(x)
+  s <- -0.5 * ((x - mu) %*% solve(Sigma) %*% (x - mu))
+  d.value <- 1/(sqrt(det(Sigma))*(pi^(n/2)))
+  d.value*exp(s)
 }
 ```
-
-
 

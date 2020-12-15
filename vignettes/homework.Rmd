@@ -11,7 +11,7 @@ vignette: >
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(comment = "#", warning = FALSE, eval = TRUE, message = FALSE)
 set.seed(1)
-library(Ball)
+library(StatComp20027)
 ```
 
 # HOMWEWORK 1
@@ -31,24 +31,6 @@ Use knitr to produce 3 examples in the book.
 
 ```{r, eval= FALSE, out.width='25%', fig.align='center', fig.cap='Donald Trump'}
 knitr::include_graphics('donald.jpg')
-```
-
-```{r, eval=FALSE}
-time <- seq.Date(as.Date("2020/7/23"), by = "day", length = 45)
-data <- read.table("supporting.txt", header = TRUE)
-
-support <- data$C
-dis <- data$B
-par(mfrow=c(2,1))
-plot(time, support, xaxt = "n")
-lines(time, support, col = "red")
-axis.Date(1, at = time, format = "%Y-%m-%d")
-title("Trump`s supporting rate (%)")
-
-plot(time, dis, xaxt = "n")
-lines(time, dis, col = "red")
-axis.Date(1, at = time, format = "%Y-%m-%d")
-title("Strongly disapprove rate (%)")
 ```
 
 2. 
@@ -1511,7 +1493,7 @@ My_lapply <- function(X) {
     result
 }
 xx <- matrix(rnorm(30), ncol=3)
-a<-My_lapply(xx); a
+a <-My_lapply(xx); a
 ```
 
 # HOMEWORK 10

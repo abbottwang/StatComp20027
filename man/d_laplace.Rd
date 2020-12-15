@@ -7,7 +7,7 @@
 d_laplace(x)
 }
 \arguments{
-\item{x}{variable vector}
+\item{x}{variable(vector)}
 }
 \value{
 the density at \code{x}

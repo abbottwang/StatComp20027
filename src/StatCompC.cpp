@@ -3,7 +3,7 @@ using namespace Rcpp;
 
 //' @title Laplace denstiy function
 //' @description Laplace denstiy function using Rcpp
-//' @param x variable vector
+//' @param x variable(vector)
 //' @return the density at \code{x}
 //' @examples
 //' \dontrun{
@@ -24,10 +24,10 @@ double d_laplace(double x) {
 }
 
 //' @title Metropolis method
-//' @description using Metropolis method implementing Mcmc
-//' @param sigma vaiance
+//' @description using Metropolis method implementing MCMC
+//' @param sigma variance
 //' @param x0 initial values
-//' @param N length
+//' @param N maximum number of iteration
 //' @return a list of \code{x} and iterator \code{k}
 //' @examples
 //' \dontrun{
