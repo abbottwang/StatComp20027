@@ -56,3 +56,7 @@ List rw_Metropolis(double sigma, double x0, int N) {
   return(List::create(Named("x")=x,
                       Named("k")=k));
 }
+
+
+
+

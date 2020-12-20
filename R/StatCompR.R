@@ -55,5 +55,33 @@ d_mvnorm <- function(x, mu, Sigma) {
   d.value*exp(s)
 }
 
+# Epanicov kernel
+kernel <- function(x) {
+  0.75*(1-x^2)*(abs(x)<1)
+}
 
+#' @title Local constant kernel regression
+#' @description local constant kernel regression
+#' @param x at which the density is estimated
+#' @param X sample
+#' @param Y sample
+#' @param h band width
+#' @return the density at \code{x}
+#' @examples
+#' \dontrun{
+#' X <- runif(200, 0, 15)
+#' Y <- (X-1.4)*(X-4.6)*(X-11.2) + rnorm(200, 0, 20)
+#' x <- runif(10, 0, 10)
+#' lck.reg(x, X, Y, 0.2)
+#' }
+#' @export
+lck.reg <- function(x, X, Y, h) {
+  n <- length(x)
+  result <- numeric(n)
+  for (i in 1:n) {
+    s <- kernel((x[i]-X)/h)
+    result[i] <- s%*%Y / sum(s)
+  }
+  result
+}
 

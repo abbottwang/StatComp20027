@@ -12,7 +12,7 @@
 
 <meta name="author" content="WANG Yu" />
 
-<meta name="date" content="2020-12-15" />
+<meta name="date" content="2020-12-20" />
 
 <title>Introduction to StatComp20027</title>
 
@@ -30,45 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
-});
-</script>
-<style type="text/css">
-a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
-a.anchor-section::before {content: '#';}
-.hasAnchor:hover a.anchor-section {visibility: visible;}
-</style>
-<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
-document.addEventListener('DOMContentLoaded', function() {
-  // Do nothing if AnchorJS is used
-  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
-    return;
-  }
-
-  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-
-  // Do nothing if sections are already anchored
-  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
-    return null;
-  }
-
-  // Use section id when pandoc runs with --section-divs
-  const section_id = function(x) {
-    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
-            ? x.id : '');
-  };
-
-  // Add anchors
-  h.forEach(function(x) {
-    const id = x.id || section_id(x.parentElement);
-    if (id === '') {
-      return null;
-    }
-    let anchor = document.createElement('a');
-    anchor.href = '#' + id;
-    anchor.classList = ['anchor-section'];
-    x.classList.add('hasAnchor');
-    x.appendChild(anchor);
-  });
 });
 </script>
 
@@ -170,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -367,7 +329,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to StatComp20027</h1>
 <h4 class="author">WANG Yu</h4>
-<h4 class="date">2020-12-15</h4>
+<h4 class="date">2020-12-20</h4>
 
 
 
@@ -402,6 +364,26 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb2-4"><a href="#cb2-4"></a>  d.value &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>(<span class="kw">sqrt</span>(<span class="kw">det</span>(Sigma))<span class="op">*</span>(pi<span class="op">^</span>(n<span class="op">/</span><span class="dv">2</span>)))</span>
 <span id="cb2-5"><a href="#cb2-5"></a>  d.value<span class="op">*</span><span class="kw">exp</span>(s)</span>
 <span id="cb2-6"><a href="#cb2-6"></a>}</span></code></pre></div>
+<p> is a Nadariya-Watson estimator of the regression function. NW estimator constructs the regression model using local constant kernel method.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>kernel &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fl">0.75</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span>(<span class="kw">abs</span>(x)<span class="op">&lt;</span><span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># Nadaraya-Watson estimator</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>lck.reg &lt;-<span class="st"> </span><span class="cf">function</span>(x, X, Y, h) {</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    result &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb3-12"><a href="#cb3-12"></a>        s &lt;-<span class="st"> </span><span class="kw">kernel</span>((x[i]<span class="op">-</span>X)<span class="op">/</span>h)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>        result[i] &lt;-<span class="st"> </span>s<span class="op">%*%</span>Y <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(s)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    }</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    result</span>
+<span id="cb3-16"><a href="#cb3-16"></a>}</span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a>X &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">15</span>)</span>
+<span id="cb3-19"><a href="#cb3-19"></a>Y &lt;-<span class="st"> </span>(X<span class="fl">-1.4</span>)<span class="op">*</span>(X<span class="fl">-4.6</span>)<span class="op">*</span>(X<span class="fl">-11.2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">20</span>)</span></code></pre></div>
 </div>
 </div>
 

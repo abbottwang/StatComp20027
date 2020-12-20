@@ -57,4 +57,28 @@ dmvnorm <- function(x, mu, Sigma) {
   d.value*exp(s)
 }
 ```
+ \code{lck.reg} is a Nadariya-Watson estimator of the regression function.
+ NW estimator constructs the regression model using local constant kernel method.
+```{r, eval=FALSE}
+rm(list=ls())
+
+kernel <- function(x) {
+    0.75*(1-x^2)*(abs(x)<1)
+}
+# Nadaraya-Watson estimator
+
+lck.reg <- function(x, X, Y, h) {
+    n <- length(x)
+    result <- numeric(n)
+    for (i in 1:n) {
+        s <- kernel((x[i]-X)/h)
+        result[i] <- s%*%Y / sum(s)
+    }
+    result
+}
+
+X <- runif(200, 0, 15)
+Y <- (X-1.4)*(X-4.6)*(X-11.2) + rnorm(200, 0, 20)
+
+```
 

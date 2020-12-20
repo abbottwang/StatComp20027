@@ -2,6 +2,7 @@
 
 export(d_laplace)
 export(d_mvnorm)
+export(lck.reg)
 export(r_mvnorm)
 export(rw_Metropolis)
 importFrom(stats,dnorm)

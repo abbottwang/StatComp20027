@@ -31,3 +31,25 @@ library(StatComp20027)
 #    d.value*exp(s)
 #  }
 
+## ---- eval=FALSE--------------------------------------------------------------
+#  rm(list=ls())
+#  
+#  kernel <- function(x) {
+#      0.75*(1-x^2)*(abs(x)<1)
+#  }
+#  # Nadaraya-Watson estimator
+#  
+#  lck.reg <- function(x, X, Y, h) {
+#      n <- length(x)
+#      result <- numeric(n)
+#      for (i in 1:n) {
+#          s <- kernel((x[i]-X)/h)
+#          result[i] <- s%*%Y / sum(s)
+#      }
+#      result
+#  }
+#  
+#  X <- runif(200, 0, 15)
+#  Y <- (X-1.4)*(X-4.6)*(X-11.2) + rnorm(200, 0, 20)
+#  
+
